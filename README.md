@@ -1,1 +1,1 @@
-# minisemin.github.io
+minisemin.github.io
