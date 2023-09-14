@@ -12,7 +12,7 @@ categories: webdev
 웹사이트를 처음 만들어보는 분도 쉽게 배우고 따라하는 웹개발 설명서가 되었으면 합니다.
 
 본 시리즈가 다루는 주제는 크게 다음과 같습니다:
-> - API, REST API
+> - [API, REST API](#https://minisemin.github.io/webdev/2023/09/09/webdev1.html)
 > - Spring
 > - RDBMS 중급 활용
 > - AWS 클라우드 컴퓨팅
