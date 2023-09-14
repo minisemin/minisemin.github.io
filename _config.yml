@@ -21,7 +21,7 @@
 title: Grad School Looks Cool
 email: minisemin@yonsei.ac.kr
 description: >- # this means to ignore newlines until "baseurl:"
-  Study notes related to computer science and biology. Some hobby artworks included.
+  Study notes related to CS science and BIOL. Some hobby artworks included.
   Hope you enjoy it!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minisemin.github.io" # the base hostname & protocol for your site, e.g. http://example.com
