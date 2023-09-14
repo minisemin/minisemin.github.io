@@ -45,31 +45,33 @@ API는 프로그램이 서로 정보를 주고받을 때 사용하는 약속된 
 
 식당에 가면 손님은 직접 음식을 요리해 먹지 않습니다. 웨이터에게 주문하면 웨이터는 조리실에 주문 내역을 전달하고, 조리실은 주문에 따라 음식을 만들어 내놓죠. 여기서 식당을 웹사이트(Website), 웨이터를 API, 주문 내용을 파라미터(Parameter), 조리실을 서버(Server), 음식을 응답(Response)로 이해하면 됩니다.
 
-- 식당 = Website
-- 웨이터 = API
-- 주문 = Parameter
-- 음식 = Response (응답)
+> - 식당 = Website
+> - 웨이터 = API
+> - 주문 = Parameter
+> - 음식 = Response (응답)
 
 주문을 할 때 웨이터는 손님에게 아무거나 물어보지 않습니다. 정해진 질문과 선택지가 있고, 손님은 이 중에서 골라서 답변을 하죠. 웨이터가 메뉴(첫 번째 parameter)를 물어봤고, 메뉴로 스테이크를 골랐다면 웨이터는 굽기 정도(두 번째 parameter)는 어느 정도로 원하는 지 물어볼 겁니다. 레어로 주문해보겠습니다. 그러면 전체 API는 다음과 같이 작성할 수 있습니다:
 
-> https://스테이크하우스/주문?메뉴=스테이크&굽기=레어
+`https://스테이크하우스/주문?메뉴=스테이크&굽기=레어`
 
-여기서 https://스테이크하우스 는 Base URL, /주문 은 Endpoint라고 부릅니다. 메뉴와 굽기 는 Parameter이며, '&'로 연결합니다.
+여기서 `https://스테이크하우스` 는 Base URL, `/주문` 은 Endpoint라고 부릅니다. 메뉴와 굽기 는 Parameter이며, '&'로 연결합니다.
+
 
 이제 실제 예시를 보겠습니다.YouTube 검색 API는 검색창에 입력한 키워드를 서버로 전송하고, 검색된 동영상의 정보를 받아오는 역할을 수행합니다.
-유튜브에 그냥 접속하면 주소창에 "https://www.youtube.com"이라는 Base URL이 나오죠. 그런데 유튜브 검색창에 "고양이"를 검색해 보면 주소창이 아래처럼 자동으로 변한 것을 확인할 수 있습니다.
+유튜브에 그냥 접속하면 주소창에 `https://www.youtube.com`이라는 Base URL이 나오죠. 그런데 유튜브 검색창에 "고양이"를 검색해 보면 주소창이 아래처럼 자동으로 변한 것을 확인할 수 있습니다.
 
-> https://www.youtube.com/results?search_query=고양이
+`https://www.youtube.com/results?search_query=고양이`
 
-여기서 "results?search_query=고양이" 라는 부분이 추가되신 게 보이죠.
+여기서 `results?search_query=고양이` 라는 부분이 추가되신 게 보이죠.
 하나씩 풀어보자면 다음과 같습니다.
 
-> results (검색 결과를 불러오는데) ? (무엇을 기준으로 가져오지?) search_query (검색어를 기준으로) =고양이 (그리고 그 검색어는 '고양이'야)
+`results (검색 결과를 불러오는데) ? (무엇을 기준으로 가져오지?) search_query (검색어를 기준으로) =고양이 (그리고 그 검색어는 '고양이'야)`
+
 
 즉, '고양이'라는 키워드를 검색어로 결과를 가져와 달라는 뜻입니다.
 그러면 강아지를 검색하면 주소창이 어떻게 나올 지 예상이 되실 겁니다
 
-> https://www.youtube.com/results?search_query=강아지
+`https://www.youtube.com/results?search_query=강아지`
 
 ---
 ### 사족 - 인터페이스
