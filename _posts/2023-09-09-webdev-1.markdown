@@ -2,7 +2,7 @@
 layout: post
 title:  "풀스택 웹개발(1) - API와 REST API"
 date:   2023-09-09 12:40:48 +0900
-categories: ycTechAcademy
+categories: webdev
 ---
 
 
