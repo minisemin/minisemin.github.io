@@ -12,7 +12,7 @@ categories: ycTechAcademy
 2. [API](#api)
 3. [REST API](#rest-representational-state-transfer-api)
 
-
+---
 # Introduction
 풀스택 웹개발 시리즈는 Spring을 활용하여 풀스택 웹사이트를 만드는 것을 목표로 합니다.
 전문용어를 정확히 사용하기 보다는 빠르고 직관적인 이해를 돕기 위한 비유를 주로 사용했습니다.
@@ -30,10 +30,13 @@ categories: ycTechAcademy
 - 객체지향(Opject-oriented-programming)
 - Java
 - SQL
+---
 
-# API
 
-## API (Application Programming Interface)
+
+## API
+
+# API (Application Programming Interface)
 
 API는 프로그램이 서로 정보를 주고받을 때 사용하는 약속된 문장입니다.
 
@@ -75,7 +78,7 @@ API는 서비스를 제공하는 애플리케이션마다 다릅니다. 그리�
 API Documentation 작성 방법과 예시는 따로 포스트에서 설명해드리겠습니다.
 
 
-## REST (REpresentational State Transfer) API
+# REST (REpresentational State Transfer) API
 REST API는 2000년도에 로이 필딩(Roy Fielding)이 최초로 소개한 아키텍처로, 웹(HTTP)를 잘 활용할 수 있도록 특별히 고안된 API 아키텍처입니다.
 
 
