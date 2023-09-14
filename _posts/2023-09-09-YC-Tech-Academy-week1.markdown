@@ -6,13 +6,15 @@ categories: ycTechAcademy
 ---
 
 
-
+---
 # Table of Contents
 1. [Introduction](#introduction)
 2. [API](#api)
 3. [REST API](#rest-representational-state-transfer-api)
 
 ---
+
+
 # Introduction
 풀스택 웹개발 시리즈는 Spring을 활용하여 풀스택 웹사이트를 만드는 것을 목표로 합니다.
 전문용어를 정확히 사용하기 보다는 빠르고 직관적인 이해를 돕기 위한 비유를 주로 사용했습니다.
@@ -30,6 +32,7 @@ categories: ycTechAcademy
 - 객체지향(Opject-oriented-programming)
 - Java
 - SQL
+
 ---
 
 
