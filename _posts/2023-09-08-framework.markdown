@@ -45,8 +45,9 @@ Of course this approach will offer the maximum flexibility to your project, but 
 
 > ### If you want to make your own chair,
 > would you start from chopping the woods or assemble the IKEA product and customize?
-> ![Building a chair](https://images.finewoodworking.com/app/uploads/2003/12/06173707/w166haIMG_2592.jpg)
-##### Image from FineWoodWorking
+> There are pros and cons for everything
+> ![Building a chair](https://contentgrid.homedepot-static.com/hdus/en_US/DTCCOMNEW/Articles/how-to-build-a-DIY-adirondack-chair-step-10.jpg)
+##### Image from The Home Depot
 
 
 &nbsp;
