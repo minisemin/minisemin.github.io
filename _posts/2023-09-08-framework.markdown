@@ -43,6 +43,14 @@ Of course this approach will offer the maximum flexibility to your project, but 
 
 &nbsp;
 
+> ### If you want to make your own chair,
+> would you start from chopping the woods or assemble the IKEA product and customize?
+> ![Building a chair](https://images.finewoodworking.com/app/uploads/2003/12/06173707/w166haIMG_2592.jpg)
+##### Image from FineWoodWorking
+
+
+&nbsp;
+
 ## Key aspects of a framework
 
 Here are some key aspects of frameworks that allows easier web development.
