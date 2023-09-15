@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Web Basics (1) - What is a Framework?"
+title:  "Web Basics (2) - What is a Framework?"
 date:   2023-09-08 12:40:48 +0900
 categories: webdev
 ---
