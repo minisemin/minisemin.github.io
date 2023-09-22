@@ -37,7 +37,7 @@ categories: backend
 
 ## SQL 시작하기
 
-SQL은 Structured Query Language의 약어로, 관계형 데이터베이스 시스템(RDBMS, 표)와 상호작용하는 프로그래밍 언어입니다. SQL은 query, 즉 질문을 통해 데이터베이스에서 데이터를 검색, 삽입, 업데이트, 및 삭제를 할 수 있으며, 데이터를 정렬하고, 그룹화하고, 집계하는 데도 사용됩니다. 한국에서는 에스큐엘이라고 읽고 미국에서는 씨퀄이라고 읽습니다.
+SQL은 Structured Query Language의 약어로, 관계형 데이터베이스 시스템([RDBMS](#https://minisemin.github.io/backend/2023/09/20/rdbms1.html), 표)와 상호작용하는 프로그래밍 언어입니다. SQL은 query, 즉 질문을 통해 데이터를 검색, 수정, 삭제, 정렬, 그룹화, 집계할 수 있습니다. 한국에서는 에스큐엘이라고 읽고 미국에서는 씨퀄이라고 읽습니다.
 
 쉽게 설명하자면, 엑셀에서 표를 조작할 때 마우스와 버튼 대신 프로그래밍 언어를 사용한다고 이해하시면 됩니다. 엑셀에서 '전체 선택'을 하는 대신 SQL에서는 `SELECT * FROM table`을 하고, 엑셀에 '행 삽입 후 데이터 입력'을 하는 대신 SQL에서는 `INSERT INTO table VALUES (1, 'name', 23)`을 입력합니다.
 

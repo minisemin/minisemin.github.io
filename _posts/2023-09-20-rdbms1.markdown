@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "백엔드 기초 (1) - 데이터베이스와 RDBMS"
+title:  "백엔드 기초 (1) - 데이터베이스, 데이터 모델, RDBMS"
 date:   2023-09-20 10:40:48 +0900
 categories: backend
 ---
@@ -26,8 +26,11 @@ categories: backend
 ---
 1. [Introduction](#소개)
 2. [데이터베이스(DB)란?](#데이터베이스db란)
-3. [DBMS란?](#dbms란)
-4. [데이터 모델이란?](#데이터-모델이란)
+3. [데이터 모델이란?](#데이터-모델이란)
+4. [관계형 모델](#관계형-모델)
+  - [관계형 모델의 특징](#관계형-모델의-특징)
+5. [DBMS란?](#dbms란)
+6. [RDBMS](#rdbms)
 
 ---
 
@@ -49,19 +52,7 @@ categories: backend
 
 ![공항 전광판](https://dimg.donga.com/wps/NEWS/IMAGE/2019/09/07/97323991.2.jpg)
 
-예를 들어, 항공사의 데이터베이스에는 각 항공편의 출발 및 도착 예정 시각, 도착지, 편명, 지연 여부, 항공사 정보, 승객 및 승무원들의 정보가 들어있습니다. 이 중 승객들이 공항에서 게이트를 찾는 데 필요한 정보를 선별해서 전광판에 표시해 놓죠.
-
-
-## DBMS란?
-
-Database Managing System (DBMS), 즉 데이터베이스 관리 시스템은 사람들이 데이터베이스를 효율적으로 오랜 시간동안 관리할 수 있도록 짜여진 프로그램입니다.
-
-유명한 DBMS에는 뭐가 있을까요?
-- Oracle, IBM DB2, Microsoft SQL 서버, Vertica, Teradata
-- 오픈소스: MySQL(Sun/Oracle), PostgreSQL, CouchDB
-- 오픈소스 라이브러리: SQLite
-
-이 중 [데이터베이스 기초] 시리즈는 Relational DBMS (관계형 데이터베이스 관리 시스템)에 대해 배워보겠습니다.
+예를 들어, 항공사의 데이터베이스에는 각 항공편의 출발 및 도착 예정 시각, 도착지, 편명, 지연 여부, 항공사 정보, 승객 및 승무원들의 정보가 들어있습니다. 이 중 승객들이 게이트를 찾는 데 필요한 정보를 선별해서 공항 전광판에 표시해 놓죠.
 
 
 ## 데이터 모델이란?
@@ -93,10 +84,102 @@ Database Managing System (DBMS), 즉 데이터베이스 관리 시스템은 사�
 
   &nbsp;
 
-  데이터 모델의 종류
+  참고로 데이터 모델의 종류는 이런 것들이 있습니다:
   - Relational 관계형
   - Semi-structured
   - Key-value pairs
   - Graph
   - Object Oriented
   - ...
+
+## 관계형 모델
+
+Relational model은 가장 흔히 사용되는 정보 표현 방식입니다. 예를 들어, 장학생의 정보를 담는 `Scholarship`이라는 Relational model을 만들어 보겠습니다.
+
+장학생과 관련된 정보에는 고유번호(id), 이름, 학점, 지급 금액이 있습니다. 이러한 항목을 Schema 라고 하며, Schema와 Instance(실제 데이터)를 담은 표를 Relation(관계)이라고 부릅니다.
+
+표의 각 행은 Row, Tupule, 또는 Record라고 부르며, 각 열은 Columns, Atrributes, 또는 Fields라고 부릅니다.
+
+> Schema = Scholarship(Id, Name, Gpa, Amount)
+>
+> 행 = Row
+>
+> 열 = Columnm, Attribute
+>
+> 데이터 = Instance
+>
+> 표 = Relation, Table
+
+  | Id | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | 1 | Matt  | 4.0 | 10,000 |
+  | 2 | John  | 3.0  | 5,000 |
+  | 3 | Tom  | 3.5  | 7,000 |
+
+
+### 관계형 모델의 특징
+
+- 관계형 모델은 Set semantics, 즉 집합의 개념을 사용하기 때문에 각 Instance의 순서는 상관이 없습니다. 위의 표와 아래의 표는 같은 표입니다.
+
+  | Id | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | <span style="color:blue">2</span> | John  | 3.0  | 5,000 |
+  | <span style="color:blue">1</span> | Matt  | 4.0 | 10,000 |
+  | <span style="color:blue">3</span> | Tom  | 3.5  | 7,000 |
+
+- 중복된 값은 가질 수 없기 때문에 완전히 같은 행은 존재하지 않습니다.
+
+  | Id | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | 1 | Matt  | 4.0 | 10,000 |
+  | 2 | John  | 3.0  | 5,000 |
+  | 3 | Tom  | 3.5  | 7,000 |
+  | <span style="color:red">3</span> | <span style="color:red">Tom</span>  | <span style="color:red">3.5</span>  | <span style="color:red">7,000</span> |
+
+- 각 열의 데이터(attribute)의 데이터 타입은 정해져 있으며, 이는 임의로 변경시킬 수 없습니다. 즉, 장학금 금액인 'Amount' attribute에 임의로 문자열 'money'를 넣을 수 없습니다.
+
+  | Id | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | 1 | Matt  | 4.0 | <span style="color:red">money</span> |
+  | 2 | John  | 3.0  | 5,000 |
+  | 3 | Tom  | 3.5  | 7,000 |
+
+- Table은 평평(flat)합니다. 표 안에 표를 넣을 수 없습니다.
+  ![](https://media.geeksforgeeks.org/wp-content/uploads/20210809203938/tables.JPG)
+
+
+> 여기까지 관계형 모델에 따라 데이터와 스키마를 만들어 봤습니다. 그럼 데이터는 어떻게 열람할 수 있을까요?
+
+
+## DBMS란?
+
+Database Managing System (DBMS), 즉 데이터베이스 관리 시스템은 데이터베이스를 효율적으로 관리할 수 있도록 짜여진 프로그램입니다.
+
+유명한 DBMS에는 뭐가 있을까요?
+- Oracle, IBM DB2, Microsoft SQL 서버, Vertica, Teradata
+- 오픈소스: MySQL(Sun/Oracle), PostgreSQL, CouchDB
+- 오픈소스 라이브러리: SQLite
+
+이 중 [데이터베이스 기초] 시리즈는 Relational DBMS (관계형 데이터베이스 관리 시스템)에 대해 배워보겠습니다.
+
+## RDBMS
+
+**SQL**은 Standing for Structured Query Language의 약자로, 관계형 데이터베이스 관리 시스템 (**Relational Database Management Stystem, RDBMS**)에 사용하는 표준 언어입니다.
+
+다음 강의에서 SQLite를 이용해서 Relational Data Model을 직접 만들고, 조작해 봅시다.
+
+- [SQL 시작하기](#https://minisemin.github.io/backend/2023/09/21/rdbms2.html)
+
+&nbsp;
+&nbsp;
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### 자료 출처
+- **Database Systems: The Complete Book**, Hector Gracia-Molina, Second Edition
