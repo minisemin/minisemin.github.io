@@ -1,0 +1,269 @@
+---
+layout: post
+title:  "백엔드 기초 (4) - SQL INSERT INTO로 데이터 입력하고 SELECT로 출력하기"
+date:   2023-09-21 02:40:48 +0900
+categories: backend
+---
+
+
+## 소개
+[백엔드 기초] 시리즈는 SQL을 활용하여 백엔드의 기본을 익히는 것을 목표로 합니다. 빠르고 직관적인 이해를 돕기 위해 전문적인 용어보다는 비유적인 표현을 많이 사용했습니다. 백엔드를 처음 배우는 분도 쉽게 배우고 따라하는 설명서가 되었으면 합니다.
+
+본 시리즈가 다루는 주제는 크게 다음과 같습니다:
+> - SQLite
+> - RDBMS
+
+다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
+> - (선수과목 없음)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### Table of Contents
+---
+1. [Introduction](#소개)
+2. [INSERT INTO](#insert-into)
+3. [SELECT](#select)
+  - [FROM](#from)
+  - [WHERE](#where)
+  - [ORDER BY](#order-by)
+  - [DISTINCT](#distinct)
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+우선, [SQLite를 실행](#https://minisemin.github.io/backend/2023/09/21/rdbms2.html)하고 [CREATE TABLE](#https://minisemin.github.io/backend/2023/09/22/rdbms3.html)로 다음과 같이 표를 생성해 줍니다. 자세한 설명은 링크를 참고해 주세요.
+
+SQLite 실행하고 보기 편하게 설정하기
+```
+sqlite3
+.open DEMO
+.mode column
+.header ON
+```
+
+`scholarship` Table 만들기
+```
+DROP TABLE IF EXISTS scholarship;  /**이미 표가 존재한다면 삭제해줍니다.**/
+
+CREATE TABLE scholarship(
+  id INT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  GPA DOUBLE NOT NULL,
+  amount INT
+);
+```
+
+&nbsp;
+
+## INSERT INTO
+
+Table에 데이터를 입력할 때는 `INSERT INTO` 라는 명령어를 입력합니다. 아래 표에 있는 데이터를 모두 입력해 봅시다.
+
+  | Id | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | 1 | Matt  | 4.0 | 10,000 |
+  | 2 | John  | 3.0  | 5,000 |
+  | 3 | Tom  | 3.5  | 7,000 |
+  | 4 | Kathy  | 1.5  |  |
+  | 5 | Amy | 4.0 | 10,000
+
+```
+INSERT INTO scholarship VALUES (1, 'Matt', 4.0, 10000);
+INSERT INTO scholarship VALUES (2, 'John', 3.0, 5000);
+INSERT INTO scholarship VALUES (3, 'Tom', 3.5, 7000);
+INSERT INTO scholarship(id, name, gpa) VALUES (4, 'Kathy', 1.5);
+INSERT INTO scholarship VALUES (5, 'Amy', 4.0, 10000);
+```
+
+Kathy의 경우 성적이 낮아서 장학금이 없습니다. `Amount` Attribute가 비어있기 때문에 Attribute의 수(4개)보다 입력하는 값의 수(3개)가 적습니다. 이럴 떄는 Table 이름 옆에 구체적으로 어떤 Attribute를 입력하는 지 적어줍니다.
+> scholarship(id, name, gpa)
+
+&nbsp;
+
+> 다음으로 SQL에서 사용하는 기본적인 Query를 알아보겠습니다.
+
+&nbsp;
+
+## SELECT
+
+`SELECT`는 SQL에서 가장 많이 사용하는 명령어로, Table의 데이터를 불러올 때 사용합니다. `scholarship`에 있는 모든 데이터를 보려면 아래와 같이 입력하면 됩니다.:
+```
+SELECT * FROM scholarship;
+```
+결과:
+```
+id  name   GPA  amount
+--  -----  ---  ------
+1   Matt   4.0  10000
+2   John   3.0  5000
+3   Tom    3.5  7000
+4   Kathy  1.5
+5   Amy    4.0  10000
+```
+이름만 선택하고 싶다면 다음과 같이 입력하면 됩니다.
+```
+SELECT name FROM scholarship;
+```
+결과:
+```
+name
+-----
+Matt
+John
+Tom
+Kathy
+Amy
+```
+GPA와 장학금만 선택하고 싶다면 다음과 같이 입력하면 됩니다.
+```
+SELECT GPA, amount FROM scholarship;
+```
+결과:
+```
+GPA  amount
+---  ------
+4.0  10000
+3.0  5000
+3.5  7000
+1.5
+4.0  10000
+```
+
+&nbsp;
+
+### FROM
+어떤 Table의 데이터를 확인할 지 정해줍니다. `AS`를 이용해 Table의 이름을 약칭으로 부를 수 있습니다. 이 경우 `S.GPA`처럼  지정한 약칭을 사용하여 Query에 나타나는 모든 변수를 간소화할 수 있습니다.
+```
+SELECT S.GPA, S.amount
+FROM scholarship AS S;
+```
+결과:
+```
+GPA  amount
+---  ------
+4.0  10000
+3.0  5000
+3.5  7000
+1.5
+4.0  10000
+```
+한 개 이상의 Table을 ',' 로 묶어서 불러올 수도 있습니다. 아래의 코드는 example1이라는 Table에서 name을, example2라는 Table에서 age라는 Attribute를 선택합니다.
+```
+SELECT E1.name, E2.age
+FROM example1 AS E1,
+     example2 AS E2;
+```
+
+&nbsp;
+
+### WHERE
+`SELECT` 명령어를 입력할 때 `WHERE`를 통해 조건을 추가할 수 있습니다. 조건은 `AND`나 `OR`을 통해 더 구체적으로 설정할 수 있습니다. GPA가 3.5 이상인 사람의 정보만 불러와 볼까요?
+```
+SELECT * FROM scholarship
+WHERE GPA >= 3.5;
+```
+결과:
+```
+id  name  GPA  amount
+--  ----  ---  ------
+1   Matt  4.0  10000
+3   Tom   3.5  7000
+5   Amy   4.0  10000
+```
+이번에는 GPA가 3.0 이상이고 장학금이 8000 이상인 학생만 찾아보겠습니다.
+```
+SELECT * FROM scholarship
+WHERE GPA >= 3.0 AND
+      amount >= 8000;
+```
+결과:
+```
+id  name  GPA  amount
+--  ----  ---  ------
+1   Matt  4.0  10000
+5   Amy   4.0  10000
+```
+
+&nbsp;
+
+### ORDER BY
+`ORDER BY`는 데이터 정렬 순서를 지정해 줍니다. 장학금이 많아지는 순서대로 데이터를 출력하면 다음과 같습니다.
+```
+SELECT * FROM scholarship
+ORDER BY amount;
+```
+결과:
+```
+id  name   GPA  amount
+--  -----  ---  ------
+4   Kathy  1.5
+2   John   3.0  5000
+3   Tom    3.5  7000
+1   Matt   4.0  10000
+5   Amy    4.0  10000
+```
+장학금이 감소하는 순서로 출력하려면 `DESC`를 적어줍니다:
+```
+SELECT * FROM scholarship
+ORDER BY amount DESC;
+```
+결과:
+```
+id  name   GPA  amount
+--  -----  ---  ------
+1   Matt   4.0  10000
+5   Amy    4.0  10000
+3   Tom    3.5  7000
+2   John   3.0  5000
+4   Kathy  1.5
+```
+
+&nbsp;
+
+### DISTINCT
+
+`DISTINCT`는 중복되지 않은 값을 가져옵니다. 현재 4.0 성적을 가진 학생은 'Matt'와 'Amy'가 있어 `SELECT GPA FROM scholarship`를 입력하면 4.0이 두 번 출력됩니다. 학생들이 받은 성적을 중복되지 않게 출력하려면 다음과 같이 작성하면 됩니다.
+```
+SELECT DISTINCT GPA FROM scholarship;
+```
+결과:
+```
+GPA
+---
+4.0
+3.0
+3.5
+1.5
+```
+
+&nbsp;
+
+> Query를 작성할 때 반드시 `SELECT` - `FROM` - `WHERE` - `ORDER BY` 순서로 작성합니다.
+
+&nbsp;
+
+다음 강의에서는 좀 더 복잡한 SQL Query를 알아봅시다.
+
+&nbsp;
+&nbsp;
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### 자료 출처
+- **Database Systems: The Complete Book**, Hector Gracia-Molina, Second Edition

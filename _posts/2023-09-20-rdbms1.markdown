@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "백엔드 기초 (1) - 데이터베이스, 데이터 모델, RDBMS"
-date:   2023-09-20 10:40:48 +0900
+date:   2023-09-18 10:40:48 +0900
 categories: backend
 ---
 
@@ -60,7 +60,7 @@ categories: backend
   ![데이터 모델](https://img.freepik.com/premium-vector/business-work-meeting-with-graph-vector-illustration-teamwork-office-flat-people-character-sit-table-manager-show-chart-strategy-presentation-group-communication-about-idea_109722-3264.jpg?w=2000)
 
 
-데이터 모델은 데이터를 표현하는 수학적인 방식을 뜻합니다. 대표적인 예시로 '표'와 '그래프'가 있습니다. 데이타 모델은 3가지 구성요소로 이루어져 있습니다.
+데이터 모델은 데이터를 표현하는 수학적인 방식을 뜻합니다. 대표적인 예시로 '표'와 '그래프'가 있습니다. 데이터 모델은 3가지 구성요소로 이루어져 있습니다.
 
 - **Schema (스키마)**
   - 어떤 데이터가 들어갈 지 알려주는 항목명입니다.
