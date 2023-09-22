@@ -1,0 +1,149 @@
+---
+layout: post
+title:  "백엔드 기초 (5) - SQL Foreign Key와 Reference"
+date:   2023-09-21 02:40:48 +0900
+categories: backend
+---
+
+
+## 소개
+[백엔드 기초] 시리즈는 SQL을 활용하여 백엔드의 기본을 익히는 것을 목표로 합니다. 빠르고 직관적인 이해를 돕기 위해 전문적인 용어보다는 비유적인 표현을 많이 사용했습니다. 백엔드를 처음 배우는 분도 쉽게 배우고 따라하는 설명서가 되었으면 합니다.
+
+본 시리즈가 다루는 주제는 크게 다음과 같습니다:
+> - SQLite
+> - RDBMS
+
+다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
+> - (선수과목 없음)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### Table of Contents
+---
+1. [Introduction](#소개)
+2. [표가 두 개 이상인 경우](#표가-두-개-이상인-경우)
+3. [Foreign Key와 Reference](#foreign-key와-reference)
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+## 표가 두 개 이상인 경우
+이전 포스트에서는 하나의 Table을 생성하고, 그 안에서 특정 데이터를 선택하는 방법에 대해 알아봤습니다.
+
+만약 Table이 두 개 이상이라면 어떻게 하는 게 좋을까요? 장학생들이 한 학기에 듣는 수업의 수와 GPA의 상관관계를 알고 싶다면 'courses'라는 Attribute를 기존 `scholarship` Table에 새로운 행으로 추가할 수도 있습니다. 하지만 각 수업의 성적까지 기록한다면 `scholarship` 표는 점점 복잡해집니다. 이럴 때 표를 두 개 이상 사용하면 표가 복잡해지는 문제를 해결할 수 있습니다.
+
+`scholarship` 표와 `studentId`(학번)을 공유하는 `courses` 표를 새로 생성해 보겠습니다. `courses`에서 `studentId`가 1인 수업은 1번 학생인 Matt가 들은 수업이며, `studentId`가 5인 수업은 5번 학생인 Amy가 들은 수업입니다.
+
+
+> Scholarship
+
+  | studentId | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | 1 | Matt  | 4.0 | 10,000 |
+  | 2 | John  | 3.0  | 5,000 |
+  | 3 | Tom  | 3.5  | 7,000 |
+  | 4 | Kathy  | 1.5  |  |
+  | 5 | Amy | 4.0 | 10,000 |
+
+> Courses
+
+  | studentId | Course   | Credit | Grade  |
+  |----|----------|--------|-------|
+  | 1  | Math     | 3      | A     |
+  | 2  | English  | 2      | B     |
+  | 3  | Physics  | 4      | A-    |
+  | 4  | History  | 3      | B+    |
+  | 5  | Chemistry| 3      | B-    |
+  | 1  | PE       | 1      | A     |
+  | 2  | Biology  | 4      | C+    |
+  | 3  | Drama    | 2      | A     |
+  | 5  | Art      | 2      | B     |
+  | 1  | Music    | 2      | A-    |
+
+
+## Foreign Key와 Reference
+
+그런데 이런 식으로 서로 다른 Table의 Attribute를 어떻게 하면 연결시킬 수 있을까요? 가장 먼저 떠오르는 방법은 `WHERE scholarship.studentId == courses.studentId`라는 조건을 추가하는 방법일 것입니다. 그런데 이것보다 쉬운 방법이 있습니다.
+
+이전에 PRIMARY KEY는 표에서 Unique한 데이터를 보장해주는 아이디와 같은 역할을 했습니다. **FOREIGN KEY**는 이름에서도 알 수 있듯이, 다른 표에서 빌려온 KEY값이며, 이렇게 빌려오는 과정을 **Reference(참조)**한다고 합니다.
+
+
+
+각각 Table을 생성하는 코드는 다음과 같습니다:
+
+- scholarship Table
+
+  ```sql
+  CREATE TABLE scholarship (
+      id INT PRIMARY KEY,
+      name VARCHAR(50),
+      GPA DECIMAL(3,1),
+      amount DECIMAL(10, 2)
+  );
+
+  INSERT INTO scholarship (id, Name, GPA, amount) VALUES
+  (1, 'Matt', 4.0, 10000),
+  (2, 'John', 3.0, 5000),
+  (3, 'Tom', 3.5, 7000),
+  (4, 'Kathy', 1.5, NULL),
+  (5, 'Amy', 4.0, 10000);
+  ```
+
+- courses Table
+  ```sql
+  CREATE TABLE courses (
+      courseId INT PRIMARY KEY,
+      studentId INT,
+      course VARCHAR(50),
+      credit INT,
+      grade CHAR(2),
+      FOREIGN KEY (studentId) REFERENCES scholarship(id)
+  );
+
+  INSERT INTO courses VALUES
+  (1, 1, 'Math', 3, 'A'),
+  (2, 2, 'English', 2, 'B'),
+  (3, 3, 'Physics', 4, 'A-'),
+  (4, 4, 'History', 3, 'B+'),
+  (5, 5, 'Chemistry', 3, 'B-'),
+  (6, 1, 'PE', 1, 'A'),
+  (7, 2, 'Biology', 4, 'C+'),
+  (8, 3, 'Drama', 2, 'A'),
+  (9, 5, 'Art', 2, 'B'),
+  (10, 1, 'Music', 2, 'A-');
+  ```
+
+- Foreign Key는 Table 하나 당 한 개 이상일 수 있습니다.
+- Foreign Key는 Null 값을 가질 수 있습니다.
+- Foreign Key는 중복될 수 있습니다.
+
+> 주의: FOREIGN KEY를 사용하는 경우, Reference 하는 Table을 먼저 생성해야 합니다.
+
+&nbsp;
+
+여기까지 서로 다른 두 Table을 연결하는 방법을 알아봤습니다. (다음 학습 내용 포스트 예정 - Join)
+
+&nbsp;
+&nbsp;
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### 자료 출처
+- **Database Systems: The Complete Book**, Hector Gracia-Molina, Second Edition
+- [Tutorialspoint: The SQL Foreign Key](#https://www.tutorialspoint.com/sql/sql-foreign-key.htm)

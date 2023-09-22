@@ -66,7 +66,7 @@ sqlite3
   | 2 | John  | 3.0  | 5,000 |
   | 3 | Tom  | 3.5  | 7,000 |
 
-```
+```sql
 CREATE TABLE scholarship(
   id INT PRIMARY KEY,
   name VARCHAR(20) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE scholarship(
 
 테이블이 생성되었는 지는 아래 명령어를 입력해 확인할 수 있습니다. 아무것도 나오지 않는다면 table이 생성되지 않은 겁니다.
 
-```
+```sql
 PRAGMA table_info(scholarship)
 ```
 
@@ -132,14 +132,14 @@ SQL Table은 중복된 값을 받을 수 없습니다. 그런데 장학생 중�
 
 저희 `scholarship` Table에서는 `id`가 PRIMARY KEY 역할을 해줍니다.
 
-  ```
+  ```sql
   INSERT INTO scholarship VALUES (1, 'Matt', 4.0, 10000);
   INSERT INTO scholarship VALUES (1, 'John', 3.0, 4000); /** primary key 1이 중복되었기 때문에 오류가 납니다. **/
   ```
 
   <span style="color:red">Error: stepping, UNIQUE constraint failed: scholarship.id (19)</span>
 
-  ```
+  ```sql
   INSERT INTO scholarship VALUES (2, 'John', 3.0, 4000); /** 이제 오류가 해결되었습니다. **/
   INSERT INTO scholarship VALUES (3, 'Matt', 4.0, 10000); /** PRIMARY KEY만 다르면 나머지 값은 모두 같아도 상관없습니다. **/
   ```
@@ -147,7 +147,7 @@ SQL Table은 중복된 값을 받을 수 없습니다. 그런데 장학생 중�
 #### UNIQUE KEY vs PRIMARY KEY
 - UNIQUE KEY에는 NULL 값을 넣어 값이 없을 수도 있지만, PRIMARY KEY에는 NULL 값이 존재할 수 없습니다.
 - 하나의 Table에는 단 하나의 PRIMARY KEY만 가질 수 있지만, UNIQUE KEY는 여러 개가 있을 수 있습니다.
-  ```
+  ```sql
   CREATE TABLE example(
     col1 datatype PRIMARY KEY,
     col2 datatype UNIQUE KEY,
@@ -163,11 +163,11 @@ SQL Table은 중복된 값을 받을 수 없습니다. 그런데 장학생 중�
 
 이러한 제한사항을 **Constraint**라고 합니다. SQLite에서는 Constraint를 추가하거나 제거할 때, `ALTER TABLE (table name) ADD/DROP CONSTRAINT`를 사용합니다.
 예를 들어, `example`이라는 Table에 `column1`에 UNIQUE라는 Constraint를 추가하고 싶다면 다음과 같이 작성하면 됩니다:
-```
+```sql
 ALTER TABLE example ADD CONSTRAINT UNIQUE_column1
 ```
 반대로 제거하고 싶다면 다음과 같이 작성합니다:
-```
+```sql
 ALTER TABLE example DROP CONSTRAINT UNIQUE_column1
 ```
 
