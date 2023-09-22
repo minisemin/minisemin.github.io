@@ -1,0 +1,102 @@
+---
+layout: post
+title:  "백엔드 기초 (1) - 데이터베이스와 RDBMS"
+date:   2023-09-20 10:40:48 +0900
+categories: backend
+---
+
+
+## 소개
+[백엔드 기초] 시리즈는 SQL을 활용하여 백엔드의 기본을 익히는 것을 목표로 합니다. 빠르고 직관적인 이해를 돕기 위해 전문적인 용어보다는 비유적인 표현을 많이 사용했습니다. 백엔드를 처음 배우는 분도 쉽게 배우고 따라하는 설명서가 되었으면 합니다.
+
+본 시리즈가 다루는 주제는 크게 다음과 같습니다:
+> - SQLite
+> - RDBMS
+
+다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
+> - (선수과목 없음)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### Table of Contents
+---
+1. [Introduction](#소개)
+2. [데이터베이스(DB)란?](#데이터베이스db란)
+3. [DBMS란?](#dbms란)
+4. [데이터 모델이란?](#데이터-모델이란)
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## 데이터베이스(DB)란?
+
+데이터베이스(Database, DB)는 어떤 주제와 관련이 있는 데이터를 한 데 모은 것을 말합니다.
+
+데이터베이스의 예시를 볼까요?
+
+- 아마존 상품들의 목록
+- 대학생 등록 정보
+- 항공사의 예약 정보
+
+![공항 전광판](https://dimg.donga.com/wps/NEWS/IMAGE/2019/09/07/97323991.2.jpg)
+
+예를 들어, 항공사의 데이터베이스에는 각 항공편의 출발 및 도착 예정 시각, 도착지, 편명, 지연 여부, 항공사 정보, 승객 및 승무원들의 정보가 들어있습니다. 이 중 승객들이 공항에서 게이트를 찾는 데 필요한 정보를 선별해서 전광판에 표시해 놓죠.
+
+
+## DBMS란?
+
+Database Managing System (DBMS), 즉 데이터베이스 관리 시스템은 사람들이 데이터베이스를 효율적으로 오랜 시간동안 관리할 수 있도록 짜여진 프로그램입니다.
+
+유명한 DBMS에는 뭐가 있을까요?
+- Oracle, IBM DB2, Microsoft SQL 서버, Vertica, Teradata
+- 오픈소스: MySQL(Sun/Oracle), PostgreSQL, CouchDB
+- 오픈소스 라이브러리: SQLite
+
+이 중 [데이터베이스 기초] 시리즈는 Relational DBMS (관계형 데이터베이스 관리 시스템)에 대해 배워보겠습니다.
+
+
+## 데이터 모델이란?
+
+  ![데이터 모델](https://img.freepik.com/premium-vector/business-work-meeting-with-graph-vector-illustration-teamwork-office-flat-people-character-sit-table-manager-show-chart-strategy-presentation-group-communication-about-idea_109722-3264.jpg?w=2000)
+
+
+데이터 모델은 데이터를 표현하는 수학적인 방식을 뜻합니다. 대표적인 예시로 '표'와 '그래프'가 있습니다. 데이타 모델은 3가지 구성요소로 이루어져 있습니다.
+
+- **Schema (스키마)**
+  - 어떤 데이터가 들어갈 지 알려주는 항목명입니다.
+  - <span style="color:#0000FF">예) 이름, 학년, 전공</span>
+- **Instance (인스턴스)**
+  - 데이터 모델에 들어있는 실제 데이터입니다.
+  - <span style="color:#0000FF">예) 홍길동, 3학년, 컴퓨터과학과</span>
+- **Query Language**
+  - 데이터를 받아오고 변형시킬 때 사용하는 언어입니다.
+  - <span style="color:#0000FF">예) SQL</span>
+
+  &nbsp;
+
+  | 이름   | 학년 | 전공         | <-- Schema
+  |--------|------|--------------|
+  | 홍길동 | 3    | 컴퓨터과학과 | <-- Instance 1
+  | 점순이 | 2    | 철학과      | <-- Instance 2
+  | 김철수 | 4    | 수학과       | <-- Instance 3
+
+  > 위처럼 표로 표현하는 데이터 모델을 Relational Model, 즉 관계형 모델이라고 부릅니다.
+
+  &nbsp;
+
+  데이터 모델의 종류
+  - Relational 관계형
+  - Semi-structured
+  - Key-value pairs
+  - Graph
+  - Object Oriented
+  - ...
