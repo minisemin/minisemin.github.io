@@ -31,6 +31,16 @@ github_username:  minisemin
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+layouts_dir: _layouts
+
+# Google Adsense
+google_adsense: ca-pub-3700317425174534
+
+# Disqus -- to work on
+# disqus:
+#   shortname: gradschoollookscool
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
