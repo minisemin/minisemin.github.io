@@ -1,0 +1,151 @@
+---
+layout: post
+title:  "백엔드 기본 (1) - SQL Index란?"
+date:   2023-09-21 03:40:48 +0900
+categories: backend
+---
+
+
+## 소개
+[백엔드 기본] 시리즈는 MySQL을 활용하여 백엔드의 기본을 익히는 것을 목표로 합니다. 빠르고 직관적인 이해를 돕기 위해 전문적인 용어보다는 비유적인 표현을 많이 사용했습니다. 백엔드를 처음 배우는 분도 쉽게 배우고 따라하는 설명서가 되었으면 합니다.
+
+본 시리즈가 다루는 주제는 크게 다음과 같습니다:
+> - MySQL
+
+다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
+> - (선수과목 없음)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### Table of Contents
+---
+1. [Introduction](#소개)
+2. [SQL Index](#sql-index)
+  - [Index 생성하기](#index-생성하기)
+  - [Index의 종류](#index의-종류)
+  - [SHOW로 Index 확인하기](#show로-index-확인하기)
+  - [언제 Index를 사용할까요?](#언제-index를-사용할까요)
+  - [Index 삭제하기](#index-삭제하기)
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## SQL Index
+
+SQL Index는 데이터 불러오기를 더 빠르게 실행할 수 있도록 특화된 Table입니다. 데이터베이스에 저장된 각 데이터의 포인터를 저장하기 때문에 데이터를 읽는 `SELECT`는 빠르게 수행할 수 있지만 데이터를 변경하는 `UPDATE`나 `INSERT`는 느리게 실행합니다.
+
+Index는 생성해주면 따로 설정하지 않아도 `SELECT`같은 명령어를 수행할 때 자동으로 사용되어, Query를 더 빠르게 실행시켜줍니다.
+
+&nbsp;
+
+### Index 생성하기
+
+Table과 비슷하게 `CREATE INDEX`를 입력하여 생성합니다. 기본적인 문법은 다음과 같습니다.
+```sql
+CREATE [UNIQUE] INDEX [IF NOT EXISTS] index_name
+  ON table_name
+    (column1 [ASC | DESC],
+     column2 [ASC | DESC],
+     ...
+     column_n  [ASC | DESC])
+  [ WHERE conditions ];
+```
+
+지난 포스트에서 만들었던 `scholarship` Table에 대한 `scholarship_index` Index를 생성해 봅시다.
+
+```sql
+CREATE INDEX gpa_index ON scholarship(gpa);
+```
+
+&nbsp;
+
+### Index의 종류
+
+Index의 종류는 다음과 같습니다:
+- Unique Index
+  중복된 값을 허락하지 않는 Index 입니다. Column에 중복된 값이 포함되어 있으면 에러가 나옵니다.
+  다음과 같이 생성합니다:
+  ```sql
+  CREATE UNIQUE INDEX name_index ON scholarship(name);
+  ```
+- Single-Column Index
+  단 하나의 행에 대응하는 Index입니다.
+  ```sql
+  CREATE INDEX single_index ON scholarship(name);
+  ```
+- Composite Index
+  두 개 이상의 행에 대응하는 Index입니다.
+  ```sql
+  CREATE INDEX comp_index ON scholarship(name, GPA);
+  ```
+- Implicit Index
+  데이터베이스가 생성될 때 자동으로 생성되는 Index입니다. Primary Key나 Unique Constraint를 생성할 때 자동으로 저장됩니다.
+
+&nbsp;
+
+### SHOW로 Index 확인하기
+
+Index가 잘 생성되었는 지는 `SHOW INDEX`를 통해 확인할 수 있습니다. 하나의 Table에서 생성된 모든 Index의 정보를 불러오는 방법입니다.
+```sql
+SHOW INDEX FROM scholarship;
+```
+`SHOW`는 MySQL에서 지원하는 명령어로, SQLite를 사용한다면 다음과 같은 코드를 실행시키면 됩니다:
+```sql
+PRAGMA index_list(scholarship);
+```
+결과:
+```
+seq  name                            unique  origin  partial
+---  ------------------------------  ------  ------  -------
+0    name_index                      1       c       0
+1    gpa_index                       0       c       0
+2    comp_index                      0       c       0
+3    single_index                    0       c       0
+4    sqlite_autoindex_scholarship_1  1       pk      0
+```
+
+&nbsp;
+
+### 언제 Index를 사용할까요?
+
+Index는 데이터 접근이 빠른 대신 업데이트가 느리기 때문에 되도록 정적이고 큰 데이터베이스에 사용하기 적합합니다.
+
+- 작은 Table보다는 큰 Table에 적합합니다.
+- 자주 업데이트 되는 자료에는 적합하지 않습니다.
+- Null value가 많은 column에는 적합하지 않습니다.
+- 데이터를 모두 추가한 후에 생성해줍니다.
+
+&nbsp;
+
+### Index 삭제하기
+
+더 이상 사용하지 않거나 변형이 많이 된 Table의 Index는 삭제해주는 것이 좋습니다.
+```sql
+DROP Index index_name ON table_name
+```
+> 주의: Primary Key나 Unique Constraint를 가진 Attribute로부터 생성된 Index는 삭제할 수 없습니다. 삭제를 원한다면 `ALTER TABLE`을 통해 테이블에서 Constraint 자체를 삭제해 줘야 합니다.
+
+
+&nbsp;
+&nbsp;
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### 자료 출처
+- [TechOnTheNet.com SQLite: Indexes](#https://www.techonthenet.com/sqlite/indexes.php#:~:text=The%20syntax%20to%20create%20an,UNIQUE)
+- [TechOnTheNet.com SQL: Create Index](#https://www.tutorialspoint.com/sql/sql-create-index.htm)
+- [TechOnTheNet.com SQL: Drop Index](#https://www.tutorialspoint.com/sql/sql-drop-index.htm)
