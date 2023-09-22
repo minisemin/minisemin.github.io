@@ -1,0 +1,200 @@
+---
+layout: post
+title:  "백엔드 기초 (3) - SQL CREATE TABLE로 표 생성하기"
+date:   2023-09-22 10:40:48 +0900
+categories: backend
+---
+
+
+## 소개
+[백엔드 기초] 시리즈는 SQL을 활용하여 백엔드의 기본을 익히는 것을 목표로 합니다. 빠르고 직관적인 이해를 돕기 위해 전문적인 용어보다는 비유적인 표현을 많이 사용했습니다. 백엔드를 처음 배우는 분도 쉽게 배우고 따라하는 설명서가 되었으면 합니다.
+
+본 시리즈가 다루는 주제는 크게 다음과 같습니다:
+> - SQLite
+> - RDBMS
+
+다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
+> - (선수과목 없음)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### Table of Contents
+---
+1. [Introduction](#소개)
+2. [표 생성하기](#표-생성하기)
+3. [표 이해하기](#표-이해하기)
+  - [CREATE TABLE](#create-table-scholarship)
+  - [변수와 데이터타입](#id-int-primary-key)
+  - [PRIMARY KEY, UNIQUE KEY](#id-int-primary-key-1)
+  - [NOT NULL과 Constraint](#name-varchar20-not-null)
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## 표 생성하기
+
+우선 [지난 포스트](#http://127.0.0.1:4000/backend/2023/09/21/rdbms2.html)에서 설정했던 것처럼 SQLite를 다운로드 받은 후 명령 프롬프트에 `sqlite3`를 입력해 SQLite를 실행시켜줍니다. 그리고 `.open DEMO`를 입력해 DEMO 데이터베이스를 만들어줍니다. (명령 프롬프트를 닫앋다 다시 열 때도 아래 명령어를 순서대로 입력해 주시면 됩니다.)
+
+```
+sqlite3
+.open DEMO
+```
+
+> #### 사족
+>SQLite에서 표를 보기 편하게 표시하기 위해 아래 명령어를 추가로 입력해줍니다.
+> ```
+> .mode column
+> .header ON
+> ```
+
+&nbsp;
+
+이제 [첫 번째 포스트](#http://127.0.0.1:4000/backend/2023/09/20/rdbms1.html)에서 예를 들었던 장학금 Table을 생성해 보겠습니다. SQL에서 새로운 Table을 만들 때는 `CREATE (table 이름)`을 사용합니다.
+
+  | Id | Name | GPA   | Amount   |
+  |---|------|--------------|
+  | 1 | Matt  | 4.0 | 10,000 |
+  | 2 | John  | 3.0  | 5,000 |
+  | 3 | Tom  | 3.5  | 7,000 |
+
+```
+CREATE TABLE scholarship(
+  id INT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  GPA DOUBLE NOT NULL,
+  amount INT
+);
+```
+위 명령어를 복사-붙여넣기 하면 `scholarship`라는 table이 생성됩니다.
+
+테이블이 생성되었는 지는 아래 명령어를 입력해 확인할 수 있습니다. 아무것도 나오지 않는다면 table이 생성되지 않은 겁니다.
+
+```
+PRAGMA table_info(scholarship)
+```
+
+결과:
+
+```
+cid  name    type         notnull  dflt_value  pk
+---  ------  -----------  -------  ----------  --
+0    id      INT          0                    1
+1    name    VARCHAR(20)  1                    0
+2    GPA     DOUBLE       1                    0
+3    amount  INT          0                    0
+
+```
+
+&nbsp;
+
+> TABLE을 생성했으니, `CREATE TABLE`에서 사용된 명령어들을 하나씩 이해해 봅시다.
+
+&nbsp;
+
+## 표 이해하기
+
+&nbsp;
+### **CREATE TABLE** scholarship();
+
+`scholarship`이라는 이름을 가진 Table을 새로 생성합니다. 괄호 안에 Schema를 설정합니다.
+
+만약 `students`라는 Table을 생성하고 싶다면 `CREATE TABLE students();` 라고 입력하면 됩니다.
+
+&nbsp;
+### **id INT** PRIMARY KEY,
+
+`id INT`는 `id`라는 Attribute(항목, 변수)를 생성하고, `id`의 데이터 타입을 `INT`(integer, 정수)로 설정했다는 뜻입니다.
+
+SQL의 데이터 타입은 자주 사용하는 것으로는 이렇게 있습니다.
+- INT: INTEGER, 정수
+- VARCHAR(length): 문자열(길이)
+- DOUBLE: 실수
+- DATE: 날짜
+- DATETIME: 날짜와 시간
+
+그럼 `name VARCHAR(20)`은 길이가 20인 문자열로 이름을 받겠다는 의미이며, `GAP DOUBLE`은 실수인 GPA(학점) 값을 받겠다는 뜻입니다.
+
+&nbsp;
+### id INT **PRIMARY KEY**,
+
+SQL Table은 중복된 값을 받을 수 없습니다. 그런데 장학생 중에 우연히 이름과 성적, 장학금 금액이 모두 같은 학생이 존재하면 어떻게 될까요? SQL Table은 오류가 나서 정보를 저장할 수 없게 됩니다.
+
+이때 사용하는 방법이 `UNIQUE KEY` 또는 `PRIMARY KEY`입니다. 아이디와 같은 고유한 Attribute를 추가해서 데이터를 구별해 주는 거죠. 때문에 `UNIQUE KEY`나 `PRIMARY KEY`로 지정된 Attribute에는 절대로 중복된 값을 넣어줄 수 없습니다.
+
+저희 `scholarship` Table에서는 `id`가 PRIMARY KEY 역할을 해줍니다.
+
+  ```
+  INSERT INTO scholarship VALUES (1, 'Matt', 4.0, 10000);
+  INSERT INTO scholarship VALUES (1, 'John', 3.0, 4000); /** primary key 1이 중복되었기 때문에 오류가 납니다. **/
+  ```
+
+  <span style="color:red">Error: stepping, UNIQUE constraint failed: scholarship.id (19)</span>
+
+  ```
+  INSERT INTO scholarship VALUES (2, 'John', 3.0, 4000); /** 이제 오류가 해결되었습니다. **/
+  INSERT INTO scholarship VALUES (3, 'Matt', 4.0, 10000); /** PRIMARY KEY만 다르면 나머지 값은 모두 같아도 상관없습니다. **/
+  ```
+
+#### UNIQUE KEY vs PRIMARY KEY
+- UNIQUE KEY에는 NULL 값을 넣어 값이 없을 수도 있지만, PRIMARY KEY에는 NULL 값이 존재할 수 없습니다.
+- 하나의 Table에는 단 하나의 PRIMARY KEY만 가질 수 있지만, UNIQUE KEY는 여러 개가 있을 수 있습니다.
+  ```
+  CREATE TABLE example(
+    col1 datatype PRIMARY KEY,
+    col2 datatype UNIQUE KEY,
+    col3 datatype UNIQUE KEY
+  );
+  ```
+- UNIQUE KEY의 값은 변경이 가능하지만 PRIMARY KEY는 한 번 저장하면 변경할 수 없습니다.
+
+&nbsp;
+### name VARCHAR(20) **NOT NULL**,
+
+`NOT NULL`을 사용하면 Table에 데이터를 추가할 때, `name`은 비워둘 수 없게 됩니다. 반대로, `NOT NULL`이 없으면 `name`이 없는 행을 입력할 수 있습니다.
+
+이러한 제한사항을 **Constraint**라고 합니다. SQLite에서는 Constraint를 추가하거나 제거할 때, `ALTER TABLE (table name) ADD/DROP CONSTRAINT`를 사용합니다.
+예를 들어, `example`이라는 Table에 `column1`에 UNIQUE라는 Constraint를 추가하고 싶다면 다음과 같이 작성하면 됩니다:
+```
+ALTER TABLE example ADD CONSTRAINT UNIQUE_column1
+```
+반대로 제거하고 싶다면 다음과 같이 작성합니다:
+```
+ALTER TABLE example DROP CONSTRAINT UNIQUE_column1
+```
+
+SQL에서 주로 사용하는 Constraint의 목록은 다음과 같습니다:
+- NOT NULL
+- UNIQUE
+- PRIMARY KEY
+- FOREIGN KEY
+- DEFAULT
+- CHECK
+
+&nbsp;
+
+여기까지 SQL로 표를 생성하는 방법을 알아봤습니다. 다음 시간에는 표에 값을 입력하고 출력하는 방법을 알아보겠습니다.
+
+&nbsp;
+&nbsp;
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### 자료 출처
+- [W3Schools SQL Constraints](#https://www.w3schools.com/sql/sql_constraints.asp)
+- [Tutorialspoint.com SQL-Unique Key](#https://www.tutorialspoint.com/sql/sql-unique-key.htm)
+- [Tutorialspoint.com SQL-Primary Key](#https://www.tutorialspoint.com/sql/sql-primary-key.htm)
