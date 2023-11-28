@@ -1,6 +1,0 @@
-<!-- ---
-layout: post
-title:  "Web Basics (1) - What is Web?"
-date:   2023-09-07 12:40:48 +0900
-categories: webdev
---- -->
