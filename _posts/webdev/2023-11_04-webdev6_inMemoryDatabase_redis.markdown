@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "풀스택 웹개발(5) - In memory database - Redis"
+title:  "풀스택 웹개발(6) - In memory database - Redis"
 date:   2023-11-04 12:40:48 +0900
 categories: webdev
 ---
