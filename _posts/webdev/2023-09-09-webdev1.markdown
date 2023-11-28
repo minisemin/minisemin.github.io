@@ -14,8 +14,8 @@ categories: webdev
 본 시리즈가 다루는 주제는 크게 다음과 같습니다:
 > - [API, REST API](#https://minisemin.github.io/webdev/2023/09/09/webdev1.html)
 > - [Spring Framework](#https://minisemin.github.io/webdev/2023/09/14/webdev2.html)
-> - RDBMS 중급 활용
-> - AWS 클라우드 컴퓨팅
+> - [Spring Sequrity](#https://minisemin.github.io/webdev/2023/10/07/webdev3_spring_security.html)
+> - [AWS 클라우드 컴퓨팅](#https://minisemin.github.io/webdev/2023/10/14/webdev5_AWS.html)
 > - 웹서비스 배포
 > - 마이크로서비스 아키텍처
 
