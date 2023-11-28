@@ -15,8 +15,7 @@ categories: webdev
 > - [Spring Sequrity](#https://minisemin.github.io/webdev/2023/10/07/webdev3_spring_security.html)
 > - [Git, Git Action과 Docker](#https://minisemin.github.io/webdev/2023/10/14/webdev4_git_gitaction_docker.html)
 > - [AWS 클라우드 컴퓨팅](#https://minisemin.github.io/webdev/2023/10/14/webdev5_AWS.html)
-> - 웹서비스 배포
-> - 마이크로서비스 아키텍처
+> - [In Memory Database - REDIS](#https://minisemin.github.io/webdev/2023/11/04/webdev6_redis.html)
 
 다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
 > - 객체지향(Opject-oriented-programming)
