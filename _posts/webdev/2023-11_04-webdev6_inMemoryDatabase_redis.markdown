@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "풀스택 웹개발(5) - In memory database - Redis"
+date:   2023-11-04 12:40:48 +0900
+categories: webdev
+---
+
+
+## 소개
+[풀스택 웹개발] 시리즈는 Spring을 활용하여 풀스택 웹사이트를 만드는 것을 목표로 합니다. 빠르고 직관적인 이해를 돕기 위해 전문적인 용어보다는 비유적인 표현을 많이 사용했습니다. 웹사이트를 처음 만들어보는 분도 쉽게 배우고 따라하는 웹개발 설명서가 되었으면 합니다.
+
+본 시리즈가 다루는 주제는 크게 다음과 같습니다:
+> - [API, REST API](#https://minisemin.github.io/webdev/2023/09/09/webdev1.html)
+> - [Spring Framework](#https://minisemin.github.io/webdev/2023/09/14/webdev2.html)
+> - RDBMS 중급 활용
+> - AWS 클라우드 컴퓨팅
+> - 웹서비스 배포
+> - 마이크로서비스 아키텍처
+
+다음과 같은 내용을 학습하시면 본 시리즈를 이해하는 데 도움이 됩니다:
+> - 객체지향(Opject-oriented-programming)
+> - Java
+> - SQL
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### Table of Contents
+---
+1. [Introduction](#소개)
+2. [In Memory Database](#in-memory-database)
+3. [REDIS](#redis)
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## In Memory Database
+
+## REDIS
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+#### 자료 출처
+- YC Tech Academy 6주차

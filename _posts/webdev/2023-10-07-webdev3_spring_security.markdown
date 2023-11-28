@@ -287,7 +287,7 @@ public class PasswordMatchesValidator
 &nbsp;
 
 #### 자료 출처
-- YC Tech Academy 4주차
+- YC Tech Academy 3주차
 - https://mangkyu.tistory.com/76 [MangKyu's Diary:티스토리]
 - https://toosalty00.hashnode.dev/pre-w4-spring-security#heading-registration-with-spring-security
 - https://webfirewood.tistory.com/115
