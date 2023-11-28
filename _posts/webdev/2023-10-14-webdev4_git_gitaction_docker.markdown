@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "풀스택 웹개발(2) - Spring Framework"
-date:   2023-09-14 12:40:48 +0900
+title:  "풀스택 웹개발(4) - Spring Framework"
+date:   2023-10-14 12:40:48 +0900
 categories: webdev
 ---
 
@@ -164,5 +164,4 @@ Spring은 어노테이션을 통해 IoC 컨테이너(팀워크)에게 각각의 
 &nbsp;
 
 #### 자료 출처
-- YC Tech Academy 2,3주차
-- [Java Guides: Spring AOP Tutorial for Beginners](#https://www.javaguides.net/2019/05/understanding-spring-aop-concepts-and-terminology-with-example.html)
+- YC Tech Academy 5주차
