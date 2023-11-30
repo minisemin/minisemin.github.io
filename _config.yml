@@ -21,7 +21,7 @@
 title: Grad School Looks Cool
 email: gradschoollookscool@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Study notes related to CS science and biology.
+  Study notes related to CS and biology.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minisemin.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: xirasen
