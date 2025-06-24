@@ -1,5 +1,5 @@
 # Personal Website
-Link:: minisemin.github.io
+Link: minisemin.github.io
 
 ## Contents
 - About & Profile
