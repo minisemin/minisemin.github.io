@@ -2,7 +2,7 @@
 layout: post
 title:  "Web Basics (2) - What is a Framework?"
 date:   2023-09-08 12:40:48 +0900
-categories: webdev
+categories: [webdev]
 ---
 
 ![Web developer image](https://img.freepik.com/free-vector/web-development-concept-with-programmer-ar_107791-17049.jpg?w=2000)
