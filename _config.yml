@@ -38,6 +38,15 @@ layouts_dir: _layouts
 collections:
   posts:
     output: true
+plugins:
+  - jekyll-archives
+
+jekyll-archives:
+  enabled: all
+  layouts:
+    category: archive
+  permalinks:
+    category: '/category/:name/'
 
 # Google Adsense
 google_adsense: ca-pub-3700317425174534
