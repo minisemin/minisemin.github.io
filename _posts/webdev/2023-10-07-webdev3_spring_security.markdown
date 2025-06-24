@@ -2,7 +2,7 @@
 layout: post
 title:  "풀스택 웹개발(3) - Spring Security"
 date:   2023-10-07 12:40:48 +0900
-categories: webdev
+categories: [webdev, spring]
 ---
 
 
