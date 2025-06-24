@@ -2,7 +2,7 @@
 layout: post
 title:  "풀스택 웹개발(4) - Git, Git Action과 Docker를 활용한 서비스 배포"
 date:   2023-10-14 12:40:48 +0900
-categories: webdev
+categories: [webdev, spring]
 ---
 
 
