@@ -1,0 +1,12 @@
+.post-navigation {
+  margin-top: 2em;
+  font-size: 0.9em;
+  color: #888;
+}
+.post-navigation a {
+  color: #007acc;
+  text-decoration: none;
+}
+.post-navigation a:hover {
+  text-decoration: underline;
+}
