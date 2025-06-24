@@ -4,8 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Grad School Looks Cool... This sentence just poped up in my head while I was building this website. I like it.
+# About Me
 
-This website contains study notes related to biology and computer science. There will be small amount of illustration tools and drawing too. Because I am a Bio and CS double major student who loves art.
+Hi! I am a Biology PhD student, studying computational biology and biophysics.
+
+# About this website
+
+This website contains study notes and projects related to biology and computer science. There will be small amount of illustration tools and drawing too.
 
 I hope you enjoy it!
