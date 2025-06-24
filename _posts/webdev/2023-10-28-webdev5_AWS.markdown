@@ -2,7 +2,7 @@
 layout: post
 title:  "풀스택 웹개발(5) - AWS 클라우드 컴퓨팅 (IAM, EC2, RDS, S3, ELB, ASG)"
 date:   2023-10-28 12:40:48 +0900
-categories: webdev
+categories: [webdev, spring, aws]
 ---
 
 
