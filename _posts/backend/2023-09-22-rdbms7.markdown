@@ -2,7 +2,7 @@
 layout: post
 title:  "백엔드 기초 (7) - SQL Transaction과 Rollback"
 date:   2023-09-21 03:40:48 +0900
-categories: backend
+categories: [backend]
 ---
 
 ## 소개
