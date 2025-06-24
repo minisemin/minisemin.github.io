@@ -2,7 +2,7 @@
 layout: post
 title:  "백엔드 기초 (5) - SQL Foreign Key와 Reference"
 date:   2023-09-21 02:40:48 +0900
-categories: backend
+categories: [backend]
 ---
 
 
