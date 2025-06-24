@@ -2,7 +2,7 @@
 layout: post
 title:  "백엔드 기초 요약"
 date:   2023-09-21 04:40:48 +0900
-categories: backend
+categories: [backend]
 ---
 
 &nbsp;
