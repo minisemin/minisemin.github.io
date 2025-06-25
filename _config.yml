@@ -41,12 +41,12 @@ collections:
 plugins:
   - jekyll-archives
 
-jekyll-archives:
-  enabled: all
-  layouts:
-    category: archive
-  permalinks:
-    category: '/category/:name/'
+# jekyll-archives:
+#   enabled: all
+#   layouts:
+#     category: archive
+#   permalinks:
+#     category: '/category/:name/'
 
 # Google Adsense
 google_adsense: ca-pub-3700317425174534

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "백엔드 기초 (3) - SQL CREATE TABLE로 표 생성하기"
+title:  "백엔드 기초 (3/7) - SQL CREATE TABLE로 표 생성하기"
 date:   2023-09-20 01:40:48 +0900
 categories: [backend]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "백엔드 기초 (2) - SQL 시작하기"
+title:  "백엔드 기초 (2/7) - SQL 시작하기"
 date:   2023-09-19 10:40:48 +0900
 categories: [backend]
 ---

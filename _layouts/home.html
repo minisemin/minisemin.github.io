@@ -1,0 +1,122 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">{{ page.title | default: "Posts" }}</h1>
+
+  <!-- Category Buttons -->
+  {% assign all_categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+  <div id="category-buttons">
+    <button class="category-button" onclick="filterPosts(this, 'all')">All</button>
+    {% for cat in all_categories %}
+    <button class="category-button category-{{ cat | slugify }}" onclick="filterPosts(this, '{{ cat | strip }}')">
+    {{ cat | strip }}
+    </button>
+    {% endfor %}
+  </div>
+
+  &nbsp;
+
+  <!-- Posts List -->
+  <ul class="post-list" id="post-list">
+    {% for post in site.posts %}
+      <li class="post-item" data-categories="{{ post.categories | join: ' ' }}">
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        {% for cat in post.categories %}
+            <small class="category-tag category-{{ cat | slugify}}">{{ cat }}</small>
+        {% endfor %}
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+<script>
+function filterPosts(button, category) {
+  // Remove active class from all buttons
+  document.querySelectorAll('.category-button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Add active class to clicked button
+  button.classList.add('active');
+
+  // Filter posts
+  const posts = document.querySelectorAll('.post-item');
+  posts.forEach(post => {
+    const cats = post.getAttribute('data-categories').split(' ');
+    post.style.display = (category === 'all' || cats.includes(category)) ? '' : 'none';
+  });
+}
+
+// 🔍 URL에서 ?category= 값을 읽어 필터 적용
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get('category');
+
+  if (cat) {
+    // 해당 카테고리 버튼 찾기
+    const btn = document.querySelector(`.category-button.category-${cat}`);
+    if (btn) {
+      filterPosts(btn, cat);
+    }
+  } else {
+    // 기본값: 전체 보기
+    const btn = document.querySelector('.category-button');
+    if (btn) {
+      filterPosts(btn, 'all');
+    }
+  }
+});
+</script>
+
+<style>
+.category-button {
+  background-color: #FFFFFF;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .7rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  padding: .5rem .75rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.category-tag {
+ padding: .1rem;
+ color: grey;
+}
+
+.category-button:hover {
+  filter: brightness(90%);
+}
+
+.category-button.active {
+  font-weight: bold;
+}
+</style>
+
+<style type="text/css">
+    {% for category in site.data.colors %}
+    .category-{{ category[0] | slugify }} {
+        background-color: {{ category[1] }};
+    }
+    {% endfor %}
+</style>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "백엔드 기초 (6) - SQL Index란?"
+title:  "백엔드 기초 (6/7) - SQL Index란?"
 date:   2023-09-21 03:40:48 +0900
 categories: [backend]
 ---

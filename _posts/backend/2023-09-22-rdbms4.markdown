@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "백엔드 기초 (4) - SQL INSERT INTO로 데이터 입력하고 SELECT로 출력하기"
+title:  "백엔드 기초 (4/7) - SQL INSERT INTO로 데이터 입력하고 SELECT로 출력하기"
 date:   2023-09-21 02:40:48 +0900
 categories: [backend]
 ---

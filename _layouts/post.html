@@ -10,7 +10,7 @@ layout: default
       <p class="post-categories">
         Categories:
         {% for category in page.categories %}
-          <a href="/category/{{ category | slugify }}/">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+          <a href="/?category={{ category | slugify }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
         {% endfor %}
       </p>
     {% endif %}
@@ -27,17 +27,58 @@ layout: default
 
 <hr>
 
-<nav class="post-navigation">
-  <div style="display: flex; justify-content: space-between;">
-    <div class="prev">
+<nav class="post-navigation" style="margin: 3rem 0;">
+  <div style="
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  ">
+    <div class="prev" style="flex: 1; text-align: left;">
       {% if page.previous %}
-        ← <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+        <a href="{{ page.previous.url }}" style="color: #0366d6; text-decoration: none;">
+          ← {{ page.previous.title }}
+        </a>
       {% endif %}
     </div>
-    <div class="next">
+    <div class="next" style="flex: 1; text-align: right;">
       {% if page.next %}
-        <a href="{{ page.next.url }}">{{ page.next.title }}</a> →
+        <a href="{{ page.next.url }}" style="color: #0366d6; text-decoration: none;">
+          {{ page.next.title }} →
+        </a>
       {% endif %}
     </div>
   </div>
 </nav>
+
+{% assign current_category = page.categories[0] %}
+{% assign related_posts = site.posts | where_exp: "post", "post.categories contains current_category" %}
+{% assign sorted_related = related_posts | sort: 'date' | reverse %}
+
+<div style="margin-top: 2rem;
+          border-top: 1px solid #eee;
+          border-bottom: 1px solid #eee;">
+  <h3 style="margin-top: 1rem">More from <a href="/?category={{ category | slugify }}" style="color: #0366d6;">{{ current_category }}</a></h3>
+  <ul style="padding-left: 1rem; 
+            line-height: 1.8;">
+    {% assign count = 0 %}
+    {% for post in sorted_related %}
+      {% if count < 5 %}
+        {% if post.url == page.url %}
+          <li style="font-weight: bold;">{{ post.title }}</li>
+        {% else %}
+          <li>
+            <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: #0366d6;">
+              {{ post.title }}
+            </a>
+          </li>
+        {% endif %}
+        {% assign count = count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

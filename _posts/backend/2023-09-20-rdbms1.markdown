@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "백엔드 기초 (1) - 데이터베이스, 데이터 모델, RDBMS"
+title:  "백엔드 기초 (1/7) - 데이터베이스, 데이터 모델, RDBMS"
 date:   2023-09-18 10:40:48 +0900
 categories: [backend]
 ---
