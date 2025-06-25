@@ -41,12 +41,11 @@ collections:
 plugins:
   - jekyll-archives
 
-# jekyll-archives:
-#   enabled: all
-#   layouts:
-#     category: archive
-#   permalinks:
-#     category: '/category/:name/'
+header_pages:
+  - posts.markdown
+  - research.markdown
+  # - projects.markdown
+  - about.markdown
 
 # Google Adsense
 google_adsense: ca-pub-3700317425174534

@@ -1,0 +1,35 @@
+- title: "Exploring novel immunotherapy biomarker candidates induced by cancer deformation"
+  authors: "Se Min Kim, Namu Park, Hye Bin Park, JuKyung Lee, Changho Chun, Kyung Hoon Kim, Jong Seob Choi, Hyung Jin Kim, Sekyu Choi, Jung Hyun Lee"
+  year: 2024
+  journal: "PLOS ONE"
+  url: "https://doi.org/10.1371/journal.pone.0303433"
+  pdf: "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0303433&type=printable"
+  bibtex: "https://journals.plos.org/plosone/article/citation/bibtex?id=10.1371/journal.pone.0303433"
+  abstract: >
+    Triple-negative breast cancer (TNBC) demands urgent attention for the development of effective treatment strategies due to its aggressiveness and limited therapeutic options [1]. This research is primarily focused on identifying new biomarkers vital for immunotherapy, with the aim of developing tailored treatments specifically for TNBC, such as those targeting the PD-1/PD-L1 pathway. To achieve this, the study places a strong emphasis on investigating Ig genes, a characteristic of immune checkpoint inhibitors, particularly genes expressing Ig-like domains with altered expression levels induced by "cancer deformation," a condition associated with cancer malignancy. Human cells can express approximately 800 Ig family genes, yet only a few Ig genes, including PD-1 and PD-L1, have been developed into immunotherapy drugs thus far. Therefore, we investigated the Ig genes that were either upregulated or downregulated by the artificial metastatic environment in TNBC cell line. As a result, we confirmed the upregulation of approximately 13 Ig genes and validated them using qPCR. In summary, our study proposes an approach for identifying new biomarkers applicable to future immunotherapies aimed at addressing challenging cases of TNBC where conventional treatments fall short.
+  thumbnail: "https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0303433.g001"
+  tags: ["TNBC", "biomarker", "Ig genes", "cancer deformation", "immunotherapy"]
+
+- title: "Recent advance in microbial fuel cell based on composite membranes"
+  authors: "Se Min Kim, Rajkumar Patel, Jong Hak Kim"
+  year: 2021
+  journal: "Membrane Journal"
+  url: "https://doi.org/10.14579/MEMBRANE_JOURNAL.2021.31.2.120"
+  pdf: "https://koreascience.kr/article/JAKO202116057086111.pdf"
+  bibtex:
+  abstract: >
+    Microbial fuel cell (MFC) is a bio-electrochemical device that generates electricity by utilizing bacterial catalytic activity that degrades wastewater. Proton exchange membrane (PEM) is the core component of MFC that decides its performance, and Nafion membrane is the most widely used PEM. In spite of the excellent performance of Nafion, it has drawbacks such as high cost, biofouling issue, and non-biodegradable property. Recent studies in MFC attempted to synthetize the alternative membrane for Nafion by incorporating various polymers, sulfonating, fluorinating, and doping other chemicals. This review summarizes characteristics and performances of different composite membrane based MFCs, mostly focusing on PEM.
+  thumbnail: "http://fulltext.koreascholar.com/Data/Org/47/Content/2021/vol_6301/MEMBRANE_JOURNAL-31-2-120_F1.gif"
+  tags: ["microbial fuel cell", "MFC", "membranes", "Nafion alternative", "PEM"]
+
+- title: "PLGA core-shell nano/microparticle delivery system for biomedical application"
+  authors: "Se Min Kim, Madhumita Patel, Rajkumar Patel"
+  year: 2021
+  journal: "Polymers"
+  url: "https://doi.org/10.3390/polym13203471"
+  pdf: "https://www.mdpi.com/2073-4360/13/20/3471/pdf?version=1634023657"
+  bibtex:
+  abstract: >
+    Core–shell particles are very well known for their unique features. Their distinctive inner core and outer shell structure allowed promising biomedical applications at both nanometer and micrometer scales. The primary role of core–shell particles is to deliver the loaded drugs as they are capable of sequence-controlled release and provide protection of drugs. Among other biomedical polymers, poly (lactic-co-glycolic acid) (PLGA), a food and drug administration (FDA)-approved polymer, has been recognized for the vehicle material. This review introduces PLGA core–shell nano/microparticles and summarizes various drug-delivery systems based on these particles for cancer therapy and tissue regeneration. Tissue regeneration mainly includes bone, cartilage, and periodontal regeneration.
+  thumbnail: "https://www.mdpi.com/polymers/polymers-13-03471/article_deploy/html/images/polymers-13-03471-g001.png"
+  tags: ["PLGA", "drug delivery", "biomedical", "core-shell", "tissue regeneration", "cancer therapy"]

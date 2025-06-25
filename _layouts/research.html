@@ -1,0 +1,147 @@
+---
+layout: page
+title: Research Publications
+permalink: /research/
+---
+
+{% assign grouped = site.data.publications | group_by: "year" | sort: "name" | reverse %}
+
+{% for year_group in grouped %}
+  <h2 style="margin-top: 2rem;">{{ year_group.name }}</h2>
+  <div class="pub-card-container">
+    {% for pub in year_group.items %}
+    <div class="pub-card" data-aos="fade-up">
+      <img src="{{ pub.thumbnail | relative_url }}" alt="thumbnail" class="pub-thumb" />
+      <div class="pub-info">
+        <div class="pub-meta">
+          <span class="pub-authors">{{ pub.authors }}</span>
+        </div>
+        <a href="{{ pub.url }}" target="_blank" class="pub-title-link">
+          <h2 class="pub-title">{{ pub.title }}</h2>
+        </a>
+        <p class="pub-abstract">{{ pub.abstract }}</p>
+        {% if pub.tags %}
+        <div class="pub-tags">
+          {% for tag in pub.tags %}
+          <span class="pub-tag">#{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="pub-links">
+          {% if pub.pdf %}
+          <a href="{{ pub.pdf }}" target="_blank">[PDF]</a>
+          {% endif %}
+          {% if pub.bibtex %}
+          <a href="{{ pub.bibtex }}" target="_blank">[BibTeX]</a>
+          {% endif %}
+          {% if pub.url contains "doi.org" %}
+          <a href="{{ pub.url }}" target="_blank">[DOI]</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+
+<style>
+.pub-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.pub-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s ease;
+}
+
+.pub-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.pub-thumb {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.pub-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pub-meta {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.pub-title-link, .pub-abstract-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.pub-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0.3rem 0;
+}
+
+.pub-title-link:hover .pub-title {
+  text-decoration: underline;
+  color: #0366d6;
+}
+
+.pub-abstract {
+  font-size: 0.95rem;
+  color: #374151;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pub-abstract-link:hover .pub-abstract {
+  color: #1d4ed8;
+}
+
+.pub-tags {
+  margin-top: 0.4rem;
+}
+
+.pub-tag {
+  background-color: #eef2ff;
+  color: #4338ca;
+  font-size: 0.75rem;
+  border-radius: 0.3rem;
+  padding: 0.15rem 0.5rem;
+  margin-right: 0.4rem;
+}
+
+.pub-links {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.pub-links a {
+  margin-right: 0.6rem;
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.pub-links a:hover {
+  text-decoration: underline;
+}
+</style>
